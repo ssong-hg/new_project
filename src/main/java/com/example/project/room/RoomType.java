@@ -3,13 +3,16 @@ package com.example.project.room;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+
 public class RoomType {
 	@Id
 	@Column(unique=true) 
