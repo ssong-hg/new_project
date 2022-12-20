@@ -8,15 +8,23 @@
 팀 프로젝트
 
 2. 사용 기술
+
 Back-end
 
 -Java 11
+
 -Spring Boot 4.16
+
 -JDBC
+
 -Gradle
+
 -Spring Data JPA
+
 -Oracle 11g
+
 -Spring Security
+
 -lombok
 
 Front-end
