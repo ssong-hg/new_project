@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
+import com.example.project.room.Room;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class RoomService {
 	private final RoomRepository roomRepository;
 	
@@ -50,46 +52,32 @@ public class RoomService {
 	
 	public void setRoom() {
 		List<Room> roomList = new ArrayList<Room>(18);
-		roomList.get(0).setRoomNo("201");
-		roomList.get(0).setRoomType("Superior Double");
-		roomList.get(1).setRoomNo("202");
-		roomList.get(1).setRoomType("Superior Double");
-		roomList.get(2).setRoomNo("203");
-		roomList.get(2).setRoomType("Superior Twin");
-		roomList.get(3).setRoomNo("204");
-		roomList.get(3).setRoomType("Superior Twin");
-		roomList.get(4).setRoomNo("301");
-		roomList.get(4).setRoomType("Superior Double");
-		roomList.get(5).setRoomNo("302");
-		roomList.get(5).setRoomType("Superior Double");
-		roomList.get(6).setRoomNo("303");
-		roomList.get(6).setRoomType("Superior Twin");
-		roomList.get(7).setRoomNo("304");
-		roomList.get(7).setRoomType("Superior Twin");
 		
-		roomList.get(8).setRoomNo("401");
-		roomList.get(8).setRoomType("Deluxe Double");
-		roomList.get(9).setRoomNo("402");
-		roomList.get(9).setRoomType("Deluxe Double");
-		roomList.get(10).setRoomNo("403");
-		roomList.get(10).setRoomType("Deluxe Double");
 		
-		roomList.get(11).setRoomNo("501");
-		roomList.get(11).setRoomType("Deluxe Twin");
-		roomList.get(12).setRoomNo("502");
-		roomList.get(12).setRoomType("Deluxe Twin");
-		roomList.get(13).setRoomNo("503");
-		roomList.get(13).setRoomType("Deluxe Twin");
+		roomList.add(new Room("201", "Superior Double"));
+		roomList.add(new Room("202", "Superior Double"));
+		roomList.add(new Room("203", "Superior Twin"));
+		roomList.add(new Room("204", "Superior Twin"));
 		
-		roomList.get(14).setRoomNo("601");
-		roomList.get(14).setRoomType("Junior Suite");
-		roomList.get(15).setRoomNo("602");
-		roomList.get(15).setRoomType("Junior Suite");
+		roomList.add(new Room("301", "Superior Double"));
+		roomList.add(new Room("302", "Superior Double"));
+		roomList.add(new Room("303", "Superior Twin"));
+		roomList.add(new Room("304", "Superior Twin"));
 		
-		roomList.get(16).setRoomNo("700");
-		roomList.get(16).setRoomType("Royal Suite");
-		roomList.get(17).setRoomNo("800");
-		roomList.get(17).setRoomType("Royal Suite");
+		
+		roomList.add(new Room("401", "Deluxe Double"));
+		roomList.add(new Room("402", "Deluxe Double"));
+		roomList.add(new Room("403", "Deluxe Double"));
+		
+		roomList.add(new Room("501", "Deluxe Twin"));
+		roomList.add(new Room("502", "Deluxe Twin"));
+		roomList.add(new Room("503", "Deluxe Twin"));
+		
+		roomList.add(new Room("601", "Junior Suite"));
+		roomList.add(new Room("602", "Deluxe Twin"));
+		
+		roomList.add(new Room("700", "Royal Suite"));
+		roomList.add(new Room("800", "Royal Suite"));
 		
 		for(int i = 0 ; i < roomList.size(); i++) {
 			roomRepository.save(roomList.get(i));
