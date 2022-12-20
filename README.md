@@ -9,22 +9,24 @@
 
 2. 사용 기술
 Back-end
-Java 11
-Spring Boot 4.16
-JDBC
-Gradle
-Spring Data JPA
-Oracle 11g
-Spring Security
-lombok
+
+-Java 11
+-Spring Boot 4.16
+-JDBC
+-Gradle
+-Spring Data JPA
+-Oracle 11g
+-Spring Security
+-lombok
 
 Front-end
-HTML 
-CSS
-javaScript
-Thymeleaf
-jQuery
-AJAX
+
+-HTML 
+-CSS
+-javaScript
+-Thymeleaf
+-jQuery
+-AJAX
 
 
 3. ERD 설계
