@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main/roominfo.css">
+    <link rel="stylesheet" href="main/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+     <section class="body">
+        <div>
+            <h2>
+                객실정보
+            </h2>
+        </div>
+        <div class="slick">
+            <div class="slick-wrap">
+                <img src="main/Superior Double.jpg" alt="슈페리얼더블">
+            </div>
+            <div class="slick-wrap">
+                <img src="main/Superior Twin.jpg" alt="슈페리얼트윈">
+            </div>
+            <div class="slick-wrap">
+                <img src="main/Deluxe Double.jpg" alt="디럭스더블">
+            </div>
+            <div class="slick-wrap">
+                <img src="main/Deluxe Twin.jpg" alt="디럭스트윈">
+            </div>
+            <div class="slick-wrap">
+                <img src="main/junior.jpg" alt="주니얼">
+            </div>
+            <div class="slick-wrap">
+                <img src="main/royal.jpg" alt="로얄">
+            </div>
+        </div>
+        <section class="slick-text">
+            <tr>
+                <td>
+                    <li>Superior Double</li>
+                </td>
+                <td>
+                    <li>Superior Twin</li>
+                </td>
+                <td>
+                    <li>Deluxe Double</li>
+                </td>
+                <td>
+                    <li>Deluxe Twin</li>
+                </td>
+                <td>
+                    <li>Junior Suite</li>
+                </td>
+                <td>
+                    <li>Royal Suite</li>
+                </td>
+            </tr>
+        </section>
+        <footer>
+        <form>
+            <section class="foot_text">
+                <div id="foot_header">
+                    Superior Double
+                </div>
+                <div id="foot_subtext">
+                    편리함은 물론 아늑함까지 더한 객실입니다. 슈페리어 더블룸에서 일상에서 벗어난 포근함을 느껴보세요.
+                </div>
+            </section>
+            <section class="foot_roominfo">
+                <div class="roominfo_room">
+                    <h3>객실 개요</h3>
+                    <div class="room1">
+                        <ol>
+                            <li class="bed">침대타입<span class="bed_type"> 더블</span></li>
+                            <li class="room_size">객실크기<span class="room_type">28㎡</span></li>
+                            <li class="check_in">　체크인<span>　15:00</span></li>
+                        </ol>
+                    </div>
+                    <div class="room2">
+                        <ol>
+                            <li>수용인원<span class="person">2명</span></li>
+                            <li>　전망<span class="view">　　시티뷰</span></li>
+                            <li>　체크아웃<span>11:00</span></li>
+                        </ol>
+                    </div>
+                    <div class="room3">
+                        <ol>
+                            <li>흡연가능여부<span>전객실 금연</span></li>
+                        </ol>
+                    </div>
+                </div>
+                <hr>
+                <div class="roominfo_ather">
+                    <h3>어매니티</h3>
+                    <div class="ather1">
+                    <ol>
+                        <h4>BEDROOM</h4>
+                        <li><span>TV (45″ 이상), 무료 Wi-Fi, 에어컨, 개별 온도조절 장치, 전화기, 미니 냉장고, 생수,<br>
+                            　　　머그컵, 커피&차, 전기포트, 테이블&소파, 옷장, 옷걸이, 슬리퍼,   금고, 책상&의자</span></li>
+                    </ol>
+                    </div>
+                    <div class="ather2">
+                        <ol>
+                            <h4>BATHROOM</h4>
+                            <li><span>샤워부스, 비데, 목욕가운, 페이스&배스 타월, 비누, 샴푸&컨디셔너, 샤워 캡,<br>
+                                　　　　　　　   바디샤워젤, 바디스펀지, 바디로션, 거울, 칫솔세트, 코튼세트, 면도기, 헤어 드라이어</span></li>
+                        </ol>
+                        </div>
+                </div>
+                <hr>
+                <div class="hotel_info">
+                    <div class="select_room">
+                        <h5>객실 예약</h5><span>TEL</span> 051-000-0000　<span>EMAIL</span> hotel@naver.com
+                    </div>
+                    <div class="buy">
+                        <a id="btnReservation" >예약하기</a>
+                    </div>
+                </div>
+            </section>
+            
+        </footer>
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <script>
+            var a = ["Superior Double", "Superior Twin", "Deluxe Double", "Deluxe Twin", "Junior Suite", "Royal Suite"];
+            var b = ["편리함은 물론 아늑함까지 더한 객실입니다. 슈페리어 더블룸에서 일상에서 벗어난 포근함을 느껴보세요.",
+                "친구와 함께하는 여행에 적합한 슈페리어 트윈룸은 고객님의 휴식을 위해 안락하게 구성된 객실입니다.",
+                "심플하고 모던한 분위기아래 편안한 라이프 스타일을 반영한 디럭스 더블룸은 비즈니스와 여가를 누리기에 적합합니다.",
+                "디럭스 트윈룸은 가족단위 여행객을 위한 맞춤형 객실로서 내 집 같은 편안함과 포근함을 느낄 수 있는 공간입니다.",
+                "주니어스위트룸은 보다 큰 면적과 구성을 통해 쾌적하고 편안한 잠자리를 선사하는 공간입니다.",
+                "로열스위트룸은 가장 럭셔리한 공간으로 숙박 하시는 고객님의 품격있는 하루를 책임지겠습니다."
+            ];
+            var c = [" 더블", "2 싱글", " 더블","1 더블 + 1 싱글", "1 퀸 + 1 싱글", "1 킹 + 1 싱글"];
+            var d = ["2명", "2명", "2명", "3명", "3명","3명"];
+            var e = ["28㎡","28㎡","31.4㎡","31.4㎡","44.9㎡","85.9㎡"];
+            var f = ["　　시티뷰 ","　　시티뷰 ","　　시티뷰 ","　　파크뷰 ","　　파크뷰 ","　　파크뷰 "];
+			
+            var pos = 0;
+            
+            
+            $(document).ready(function () {
+                $('.slick').slick({
+                    //autoplay: true, // 자동 스크롤 사용 여부
+                    //autoplaySpeed: 2500, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                    pauseOnHover: true,
+                    dots: true,
+                });
+                $('.slick').on('afterChange', function (event, slick, currentSlide) {
+                	pos=currentSlide;
+                    $('#foot_header').html(a[currentSlide]);
+                    $('#foot_subtext').html(b[currentSlide]);
+                });
+                $('.slick').on('afterChange', function (event,slick,currentSlide)
+                {
+                    $('.bed_type').html(c[currentSlide]);
+                    $('.person').html(d[currentSlide]);
+                    $('.room_type').html(e[currentSlide]);
+                    $('.view').html(f[currentSlide]);
+                })
+                $('#btnReservation').on('click',function(e){
+                	var loc = 'reservation/info/' + a[pos];
+                	e.preventDefault();
+                	location.href=loc;
+                	
+                	
+                })
+            });
+        </script>
+        
+        
+</body>
+
+</html>

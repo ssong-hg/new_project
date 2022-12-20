@@ -1,0 +1,48 @@
+.wrap{
+    width: 190px;
+    margin: 150px auto;
+}
+
+input{
+    margin: 5px 0;
+    height: 25px;
+    width: 200px;
+    
+    border-radius: 4px;
+    border-color: gray;
+    
+    
+}
+
+button{
+    margin-left: 23px;
+    background-color: gainsboro;
+    display: inline-block;
+    border-radius: 4px;
+    border:none;
+    block-size: 25px;
+    inline-size: 150px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.wrap{
+    border: 3px solid #162447;
+    padding: 20px;
+    padding-right: 40px;
+}
+.wrap_title
+{
+    border-bottom: 4px solid white;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 19px;
+}
+
+button:hover{
+    transition: 0.3s;
+    border: gray;
+    background-color: black;
+    color: aliceblue;
+
+}

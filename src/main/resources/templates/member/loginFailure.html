@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="member/login.css">
+    <link rel="stylesheet" href="member/base.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+	<header>
+        <div>
+            <a href="main.html" th:href="@{main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <section class="body">
+        <form action="login" th:action="@{/login}" method="POST">
+            <div>
+                <h2>로그인</h2>
+            </div>
+            <div>
+                <p>
+                    <label for="id">　아이디</label>
+                    <input type="text" id="id" name="id" placeholder=" 내용을 입력해주세요">
+                </p>
+                <p>
+                    <label for="pw">비밀번호</label>
+                    <input type="password" id="pw" name="pw" placeholder=" 내용을 입력해주세요">
+                </p>
+                <p>
+                    <button id="loginBtn">로그인</button><br>
+                    <span><a th:href="@{signup}">회원가입</a></span>
+                </p>
+            </div>
+            <footer>
+                <div>
+                    <hr>
+                    <span>
+                        <a th:href="@{member/kakaologin}">카카오계정으로 로그인</a>
+                    </span>
+                </div>
+            </footer>
+        </form>
+    </section>
+
+    
+
+</body>
+
+</html>

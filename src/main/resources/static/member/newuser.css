@@ -1,0 +1,52 @@
+
+.body{
+    text-align: center;
+    position: relative;
+}
+.body form{
+}
+
+.body form h3{ 
+    margin-bottom: 70px;
+    margin-right: 140px;
+    font-size: 22px;
+    
+}
+.body form p{
+    text-align: center;
+}
+
+.body form p label{
+    text-align: center;
+    position: absolute;
+    margin-left: 20px;
+    left: 34%;
+    margin-top: 7px;
+    font-weight: bold;
+}
+.body form p input
+{
+    block-size: 35px;
+    inline-size: 250px;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+button{
+    margin-top: 20px;
+    background-color: grey;
+    color: aliceblue;
+    width: 120px;
+    height: 40px;
+    margin-right: 130px;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+button:hover{
+    cursor: pointer;
+    background-color: black;
+    transition: 0.3s;
+}
+
+#repassword{
+    margin-bottom: 30px;
+}

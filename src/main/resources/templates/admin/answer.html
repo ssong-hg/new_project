@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/question/qna.css">
+    <link rel="stylesheet" href="/question/admin_qna.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <section class="admin_body" th:unless="${session.admin == null}">
+        <div>
+            <ul>
+                <li><a th:href="@{/admin/reservation}">예약관리</a></li>
+                <li><a th:href="@{/admin/answer}">Q & A</a></li>
+                <li><span><a class="admin_home" th:href="@{/admin/master}">관리자 홈</a></span></li>
+                <li><a th:href="@{/admin/member}">회원목록</a></li>
+                <li><a th:href="@{/admin/crew}">관리자 운영</a></li>
+            </ul>
+        </div>
+    </section>
+    <section th:if="${session.admin == null}">
+	     <div class="noBody" >
+	    	<span>
+	    		잘못된 접근 입니다
+	    	</span>
+	    </div>
+    
+    </section>
+   
+	 <div th:unless="${session.admin == null}" layout:fragment="content" class="wrap">
+        <h2>Q & A</h2>
+        <table class="table" border="1" width="800" margin-left="540" text-align="center" margin-top="100">
+            <thead class="table-dark QandA">
+                <tr>
+                    <th class="one">No.</th>
+                    <th class="two">ID</th>
+                    <th class="three">Title</th>
+                    <th class="four">Date</th>
+                    <th class="five">답변</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="question, loop : ${paging}">
+                    <td th:text="${question.questionNo}"></td>
+                    <td th:text="${question.id}"></td>
+                    <td>
+                        <a th:href="@{detail/}+${question.questionNo}" th:text="${question.title}"></a>
+                    </td>
+                    <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+	          		<td>
+       					<span th:if="${#strings. isEmpty(question.answer)}" th:text="X"></span>
+       					<span th:if="${not#strings. isEmpty(question.answer)}" th:text="O"></span>
+     				</td> 
+	            </tr>
+	        </tbody>
+	    </table>
+	  			  <!--페이징 CSS-->
+
+	<!-- 페이징처리 시작 -->
+    <div class="list_number" th:if="${!paging.isEmpty()}"><!--paging.isEmpty:페이지존재여부(게시물있으면 false,없으면 true)-->
+    	<div class="list_n_menu">
+        	<ul class="pagination justify-content-center" style=" list-style: none; display: flex; align-items: baseline; justify-content: center;">
+           
+           <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+            <!-- !paging.hasPrevious - disabled : 이전페이지가 없으면 비활성화-->
+
+                <a class="page-link" th:href="@{|?page=${paging.number-1}|}">
+                <!--이전페이지 링크-->
+                    <span>이전</span>
+                </a>
+            </li>
+
+            <!--th:each :페이지 리스트 루프--> <!--#numbers.sequence(시작, 끝)-->
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+            
+            th:if="${page >= paging.number-5 and page <= paging.number+5}"
+            
+            th:classappend="${page == paging.number} ? 'active'"
+            class="page-item">
+            <!--page == paging.number : 현재페이지와 같으면 active 적용-->
+
+                <a th:text="${page+1}" class="page-link" th:href="@{|?page=${page}|}"></a>
+            </li>
+
+
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+            <!-- !paging.hasNext - disabled : 다음페이지 없으면 비활성화-->
+
+                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                <!--다음페이지 링크-->
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    	</div> 
+    </div>
+
+    <!-- 페이징처리 끝 -->
+	</div>
+	</body>
+</html>

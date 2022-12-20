@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="/reservation/base.css">
+    <link rel="stylesheet" href="reservationList.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+<body>
+  <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <div th:if="${session.member == null}">
+        <!-- 비로그인 -->
+        <th:block>
+            <section class="body">
+                <div>
+                    <h3>Access Denied</h3>
+                    <h4>해당 기능은 로그인이 필요합니다</h4>
+                </div>
+                <div class="login_img">
+                </div>
+                <div class="sub">
+                    <div class="login_box">
+                        <a class="login_a" href="main.html" th:href="@{/main}">로그인 화면으로 돌아가기</a>
+                    </div>
+                    <div class="qna_box">
+                        <a class="qanda_a" href="roominfo.html" th:href="@{/roominfo}">객실 정보 화면으로 돌아가기</a>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+        <th:block th:unless="${session.member == null}" layout:fragment="content" class="wrap">
+            <h2 class="main_title">예약확인</h2>
+            <table class="table" border="1" width="800" margin-left="540" text-align="center" margin-top="100">
+                <thead class="table-dark QandA">
+                    <tr>
+                        <th class="one">예약번호</th>
+                        <th class="two">예약자 아이디</th>
+                        <th class="three">객실유형</th>
+                        <th class="four">호실번호</th>
+                        <th class="five">Check in 날짜</th>
+                        <th class="five">Check out 날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="reservation, loop : ${rList}">
+                        <td th:text="${reservation.reservationNo}"></td>
+                        <td th:text="${reservation.memId}"></td>
+                        <td><a class="room_type" th:href="@{detail/}+${reservation.reservationNo}" th:text="${reservation.roomType}"></a>
+                        </td>
+                        <td th:text="${reservation.roomNo}"></td>
+                        <td th:text="${#dates.format(reservation.checkInDate, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(reservation.checkOutDate, 'yyyy-MM-dd')}"></td>
+	                </tr>
+	            </tbody>
+	        </table>  
+        </th:block>   
+    </body>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/question/question_detail.css">
+        <link rel="stylesheet" href="/main/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <div th:if="${session.member == null}">
+        <!-- 비로그인 -->
+        <th:block>
+            <section class="body">
+            	<h3>Access Denied</h3>
+                <h4>Q & A는 로그인이 필요합니다.</h4>
+            	<div class="login_img"> </div>
+                <div class="sub">
+                	<div class="login_box"}>
+                    <a class="login_a" href="main.html" th:href="@{/login}">로그인 화면으로 돌아가기</a>
+                	</div>
+                    <div class="qna_box">
+                       <a class="qanda_a" href="qna.html" th:href="@{/question/list}">Q & A 화면으로 돌아가기</a>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+    <div th:if="${session.member != null}">
+        <!-- 로그인 -->
+        <th:block th:if="${question.id == session.member.id }" class="body1">
+            <!-- 작성자 -->
+            <div class="main_box">
+            <section class="all_box">
+                <div class="id_box">
+                <div>
+                    <label class="title_color" for="id" >ID</label>
+                </div>
+                 <span th:text="${question.id}"></span>
+                 </div>
+                <div class="title_box">
+                <div>
+                    <label class="title_color" for="title">Title </label>
+                </div>
+                    <span th:text="${question.title}"> </span>
+                </div>
+                <div class="content_box">
+                <div>
+                    <label class="title_color" for="content">Content</label>
+                </div>
+                    <span th:text="${question.content}">
+                </div>
+                <div class="answer_box">
+                <div>
+                    <label class="title_color"for="answer">Answer</label>
+                </div>
+                    <span th:if="${#strings. isEmpty(question.answer)}" th:text="@{답을 기다려 주세요}"></span>
+	       	    <span th:if="${not#strings. isEmpty(question.answer)}" th:text="${question.answer}"></span>
+                </div>
+            </section>
+            </div>
+	    </th:block>
+	    <th:block th:if="${question.id != session.member.id }"     class="body2"> <!--  비작성자 -->
+	    	<div>해당글은 작성자만 확인할수 있습니다</div>
+		</th:block>
+	</div>
+</body>
+
+</html>

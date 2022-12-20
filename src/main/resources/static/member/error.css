@@ -1,0 +1,68 @@
+.body{
+    text-align: center;
+    padding-top: 100px;
+}
+
+.body h3{
+    font-size: 34px;
+}
+
+.body div{
+    block-size: 150px;
+    font-size: 18px;
+    color: aliceblue;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 100px;
+}
+.gong{
+    background: url(erroe.png) no-repeat;
+    display: inline-block;
+    inline-size: 200px;
+    background-size: 85%;
+    margin-top: 30px;
+    block-size: 170px;
+    margin-left: 36px;
+}
+
+.body>div>a{
+
+    color: aliceblue;
+    list-style: none;
+    text-decoration: none;
+    border: 1px solid darkred;
+    background-color: darkred;
+    border-radius: 4px;
+    block-size: 8px;
+    padding: 7px 25px;  
+    font-size: 18px;
+}
+
+
+.body>div>a:hover{
+
+    border: 1px solid darkred;
+    background-color: white;
+    transition: 0.5s;
+    color: darkred;
+}
+
+.body div span a{
+    background-color: gray;
+    list-style: none;
+    text-decoration: none;
+    color: aliceblue;
+    border-radius: 4px;
+    border: 1px solid gray;
+    
+    block-size: 8px;
+    padding: 7px 33px;
+    font-size: 18px;
+}
+
+.body div span a:hover{
+    background-color:black;
+    color: white;
+    transition: 0.5s;
+    border: 1px solid white;
+}

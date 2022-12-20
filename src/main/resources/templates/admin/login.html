@@ -1,0 +1,67 @@
+<html xmlns:th="http://thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+        
+    <meta http-equiv="Content-Type"  content="text/html; charset=UTF-8">
+        <title>관리자 로그인</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="base.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+
+    <body style="text-align: center">
+        <form class="add_login_form" action="master" th:action="@{login}" th:object="${admin}" method="POST">
+            <div>
+                <h2>Admin Login</h2>
+            </div>
+            <div class="id_box">
+                <label for="id">　아이디</label>
+                <input type="text" id="id" name="id">
+            </div>
+            <div class="pw_box">
+                <label for="pw">비밀번호</label>
+                <input type="password" id="pw" name="pw">
+            </div>
+            <div>
+                <button class="admin_login_submit">로그인</button>
+            </div>
+        </form>
+    </body>
+
+</html>

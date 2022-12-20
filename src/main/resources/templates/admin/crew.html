@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="crew.css">
+    <link rel="stylesheet" href="base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <section th:if="${session.admin == null}">
+	     <div class="noBody" >
+	    	<span>
+	    		잘못된 접근 입니다
+	    	</span>
+	    </div>
+    
+    </section>
+    <section class="admin_body" th:unless="${session.admin == null}">
+        <div>
+            <ul>
+                <li><a th:href="@{/admin/reservation}">예약관리</a></li>
+                <li><a th:href="@{/admin/answer}">Q & A</a></li>
+                <li><span><a class="admin_home" th:href="@{/admin/master}">관리자 홈</a></span></li>
+                <li><a th:href="@{/admin/member}">회원목록</a></li>
+                <li><a th:href="@{/admin/crew}">관리자 운영</a></li>
+            </ul>
+        </div>
+    </section>   
+        <div class="table_div">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td colspan="7">관리자 목록 조회</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="two">ID</th>
+                        <th class="four">Name</th>
+                        <th class="six">Tel</th>
+                    </tr>
+                    <tr th:each="admin, loop : ${adminList}">
+                        <td th:text="${admin.id}"></td>
+                        <td th:text="${admin.name}"></td>   
+                        <td th:text="${admin.tell}"></td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="new_admin">
+            <a th:href="@{crew_signup}">관리자 등록</a>
+	    </div>
+</body>
+</html>

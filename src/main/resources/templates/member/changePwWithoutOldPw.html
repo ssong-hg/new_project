@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>비밀번호 변경</title>
+	<link rel="stylesheet" href="member/base.css">
+	<link rel="stylesheet" href="member/changePwWithoutOldPw.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>	
+</head>
+<body>
+	<header>
+        <div>
+            <a href="main.html" th:href="@{main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+	<div class="wrap">
+		<h4>비밀번호</h4>
+
+		<span>새 비밀번호</span>
+		<input id="inputNewPw" type="password"></input><br/><br/>
+			
+		<span>새 비밀번호 확인</span>
+		<input id="inputNewPw2" type="password"></input><br/><br/>
+			
+	    <button type="button" id="changePwBtn">비밀번호 변경</button><br><br>
+    </div>
+    
+    <script>
+    	var changePwBtn = document.getElementById('changePwBtn');
+    	
+    	changePwBtn.onclick = function(){
+    		
+    		if(inputNewPw.value == ''){
+    			alert('변경할 내용이 없습니다.');
+    			
+    		}else{
+    		
+	    		$.ajax({
+	    			url: '/changeWithoutOldPwCheck',
+	    			data: {
+	    				inputNewPw: $('#inputNewPw').val(),
+	    				inputNewPw2: $('#inputNewPw2').val()
+	    			},
+	
+	    			success:
+	    				function(result){
+	    				
+	    					if(result == 'regex') {
+		    					alert('8-16자의 영문 대/소문자, 숫자, 특수문자를 사용하세요.');
+		    					
+		    				}else if(result == 'same'){
+								alert('현재 사용중인 비밀번호입니다.');
+								
+							}else if(result == 'unequal'){
+								alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+								
+							}else if(result == 'true') {
+		    					alert('비밀번호 변경 완료');
+		    					location.href = "/changePwSuccess";
+		    					
+		    				}else{
+		    					console.log("####result==null");
+		    				}
+	    					
+	    					
+		    					
+	    				},
+	    				
+	    			error: function( xhr ) {
+			    		 console.log( xhr );
+			    		 alert(xhr.status + ':' + xhr.statusText);
+	    			
+	    			}	
+	    				
+	    		})
+    		}
+    		
+    	}
+    </script>
+</body>
+</html>        
+        

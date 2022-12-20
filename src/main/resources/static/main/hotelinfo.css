@@ -1,0 +1,212 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    size: 100%;
+}
+
+header{
+    position: relative;
+    block-size: 120px;
+}
+header div h1{
+    display: inline-block;
+    margin-left: 50px;
+    position: absolute;
+    left: 40px;
+}
+header section{position: absolute; right: 120px; margin-top: 18px;}
+header section ul{display: inline-block;
+}
+header section ul li{
+    list-style: none;   
+}
+
+
+
+header section ul li a{text-decoration: none;color:  slategray;
+    font-size: 18px;}
+
+.body {}
+
+
+.slick-prev{
+    top: 50%;
+    z-index: 100;
+    font-size: 0;
+
+}
+
+.slick-next{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 100;
+    font-size: 0;
+}
+
+.slick-arrow{
+    position: absolute;
+    border: none;
+    border-radius: 5px;
+}
+
+.slick-prev:before{
+    content: "\f053";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 50px;
+    color: #fff;
+    transition: 0.3s;
+    position: absolute;
+    left: 50px;
+    cursor: pointer;
+}
+.slick .slick-prev:hover:before{
+    color: skyblue;
+}
+
+.slick .slick-next::before{
+    content: "\f054";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 50px;
+    color: #fff;
+    transition:0.3s;
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+}
+.slick .slick-next:hover:before{
+    color: skyblue;
+}
+
+.slick{
+    position: absolute;
+    width: 1150px;
+}
+.slick-wrap>img{
+    margin: 0 auto;
+}
+.slick-dots
+{   
+    
+    list-style: none;
+    display: inline;
+    position: absolute;
+    left: 200px;
+}
+img{
+    height: 700px;
+    width: 1300px;
+}
+
+.bn-controller{
+}
+.slick-text{
+    position: absolute;
+    bottom: 0%;
+    background-color: rgba(0,0,0,0.5);
+    color: aliceblue;
+    z-index: 200;
+    inline-size: 1150px;
+}
+.wrap{
+    position: relative;
+    text-align: center;
+    margin: 20px;
+    display: block;
+    padding-left: 352px;
+}
+
+footer
+{
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 90px;
+    margin-left: 500px;
+    inline-size: 1000px;
+}
+
+.footer_text{
+    width: 70%;
+}
+
+.footer_text h3{
+    display: inline;
+}
+.footer_text h4
+{
+    display: inline-block;
+    margin-left: 188px;
+    margin-bottom: 50px;
+}
+
+.footer_text2{
+    width: 60%;
+    margin-top: 20px;
+    inline-size: 120%;
+}
+.footer_text2 td{
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.footer_text2 h2{
+    display: inline-block;
+    font-size: 18px;
+    
+}
+.footer_text2 h3{
+    display: inline-block;
+    margin-left: 156px;
+    font-size: 16px;
+}
+.footer_text2 span{
+    margin-left: 200px;
+    font-size: 14px;
+}
+.footer_text2 span h3{
+    margin-left: 25px;
+    margin-bottom: 30px;
+    margin-right: -30px;
+}
+
+
+
+.footer_text3{
+
+    margin-top: 13px;
+    margin-bottom: 32px;
+    display: inline-block;
+}
+
+.footer_text3 h3{display: inline; font-size: 18px;}
+.footer_text3 h4{display: inline-block; margin-left: 185px;   margin-bottom: 10px; font-size: 16px;  }
+.footer_text3 td{}
+
+.footer_text4{
+    margin-top: 25px;
+    width: 60%;
+    background-color: #162447;
+    color: #fff;
+    inline-size: 920px;
+    block-size: 70px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin-left: -15px;
+}
+.footer_text4 h3{display: inline; margin-right: 35px;}
+.footer_text4 h4{display: inline-block;}
+.footer_text4 h4 span{margin-left: 120px;
+font-size: 16px; font-weight: normal;}
+hr{
+    margin-right: 100px;
+}
+
+.slick-dots{
+    text-align: left;
+}

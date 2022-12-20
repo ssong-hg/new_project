@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/main/base.css">
+    <link rel="stylesheet" href="/reservation/reservation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+
+    <div th:if="${session.member == null}">
+        <!-- 비로그인 -->
+        <th:block>
+            <section class="body">
+                       	<h3>Access Denied</h3>
+                <h3>해당 기능은 로그인이 필요합니다</h3>
+            	<div class="login_img"> </div>
+                <div class="sub">
+                	<div class="login_box"}>
+                    <a class="login_a" href="main.html" th:href="@{/main}">로그인 화면으로 돌아가기</a>
+                	</div>
+                    <div class="qna_box">
+                       <a class="qanda_a" href="roominfo.html" th:href="@{/roominfo}">객실 정보 화면으로 돌아가기</a>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+    <div th:unless="${session.member == null}">
+    	<div><!-- 달력 --> </div>
+    	
+    	<div><!-- 화면 -->
+		 <h3 class="title"><span  th:text="${rType.roomType}"></span></h3>
+    		<form th:action="@{/reservation/info}" method="post">
+    		<div class="form_box">
+	           	<div>Check In</div> 
+	                 <input id="inDate" type="date" th:field="${reservationCreate.checkInDate}">
+	           
+	            <div>Check Out</div>
+	            <div class="ondata_box">
+	                <input id="outDate" type="date" th:field="${reservationCreate.checkOutDate}">
+	            </div>
+	        	<div class="room_choice">객실</div>
+	        	  
+	                 <select id="roomNo" th:field="${reservationCreate.roomNo}">
+	                	<option th:each="room, loop : ${rList}" th:value="${room.roomNo}" th:text="${room.roomNo}"></option>
+						
+					</select>
+	            <div class="men">인원</div>
+	                <select th:field="${reservationCreate.persons}" >
+	                	<option value="1">1</option>
+						<option value="2">2</option>
+						<option th:if="${rType.persons >= 4}" value="3">3</option>
+						<option th:if="${rType.persons >= 4}" value="4">4</option>
+						<option th:if="${rType.persons >= 6}" value="5">5</option>
+						<option th:if="${rType.persons >= 6}" value="6">6</option>
+					</select>
+	            <div>금액</div>
+	               <div id="price" ></div>
+                <button type="submit">예약하기</button>
+    		</div>
+       		</form>
+       		
+		</div>
+    </div>
+   <script>
+   var inDate = document.getElementById('inDate');
+   var outDate = document.getElementById('outDate');
+   var roomNo = document.getElementById('roomNo');
+   
+   var price = document.getElementById('price');
+   
+    
+   
+   outDate.addEventListener('focusout', totalPrice);
+   
+   
+   function totalPrice(){
+	   $.ajax({
+		   url: '/reservation/totalPrice',
+		   data : { 
+			   inDate :  $('#inDate').val(),
+			   outDate :  $('#outDate').val(),
+			   roomNo :  $('#roomNo').val()
+           }, 
+           success: function(totalPrice){
+				if(totalPrice == null){
+					price.innerHTML = "날짜를 입력해 주세요";
+					price.style.display = "block";
+					price.style.color - "black"
+                   
+				}else{
+					price.innerHTML = totalPrice;
+					price.style.display = "block";
+					price.style.color - "black"
+				}
+           },
+           error:  function( xhr ) {
+	    		 console.log( xhr );
+	    		 //alert(xhr.status + ':' + xhr.statusText);
+	    	}  
+	   })
+	   
+	   
+   }
+   
+   
+   
+   
+   
+   
+   </script>
+   
+   
+   
+   
+    
+    
+   </body>
+   
+   
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

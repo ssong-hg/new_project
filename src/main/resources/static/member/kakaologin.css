@@ -1,0 +1,27 @@
+.body{
+    margin-top: 165px;
+    position: relative;
+}
+.body h2
+{
+    text-align: center;
+}
+.body form{text-align: center;}
+.body form p{text-align: center;}
+h2{margin-bottom: 90px; margin-right: 10px;}
+
+#id{position: absolute; display: inline-block; top: 73px; left: 42.3%; font-size: 18px;}
+
+#pw{position: absolute; display: inline-block; top: 176px; left: 42.3%; font-size: 18px;}
+
+input{block-size: 38px; inline-size: 285px; margin-bottom: 45px; border:1px solid darkgrey; border-radius: 4px;}
+
+button{
+    background-color: rgb(241, 196, 15);
+    inline-size: 290px; block-size: 40px;
+    border-radius: 4px;
+    border: 2px solid rgb(241, 196, 15);
+    font-size: 16px;
+    margin-top: 20PX;
+    cursor: pointer;
+}

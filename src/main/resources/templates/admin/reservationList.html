@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/admin/base.css">
+    <link rel="stylesheet" href="/admin/reservationList.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <section th:if="${session.admin == null}">
+	     <div class="noBody" >
+	    	<span>
+	    		잘못된 접근 입니다
+	    	</span>
+	    </div>
+    
+    </section>
+    <section class="admin_body" th:unless="${session.admin == null}">
+        <div>
+            <ul>
+                <li><a th:href="@{/admin/reservation}">예약관리</a></li>
+                <li><a th:href="@{/admin/answer}">Q & A</a></li>
+                <li><span><a class="admin_home" th:href="@{/admin/master}">관리자 홈</a></span></li>
+                <li><a th:href="@{/admin/member}">회원목록</a></li>
+                <li><a th:href="@{/admin/crew}">관리자 운영</a></li>
+            </ul>
+        </div>
+    </section>
+   <section class="admin_body" th:unless="${session.admin == null}">
+    <div>
+   <table border="1">
+   		<thead>
+   		<th colspan="6">예약정보</th>
+                <tr>
+                    <th class="one" >예약번호</th>
+                    <th class="two">호실번호</th>
+                    <th class="three">객실유형</th>
+                    <th class="four">예약자 아이디</th>
+                    <th class="five">Check in 날짜</th>
+                    <th class="five">Check out 날짜</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr th:each="reservation, loop : ${rList}">
+                    <td th:text="${reservation.reservationNo}"></td>
+                     <td th:text="${reservation.roomNo}"></td>
+                  
+                   <td th:text="${reservation.roomType}"> </td>
+                 	 <td th:text="${reservation.memId}"></td>
+                   
+                   <td th:text="${#dates.format(reservation.checkInDate, 'yyyy-MM-dd')}"></td>
+                   
+                   <td th:text="${#dates.format(reservation.checkOutDate, 'yyyy-MM-dd')}"></td>
+                   
+	          		
+	            </tr>
+	        </tbody>
+	       
+   </table>
+   </div>
+     </section>
+</body>
+
+</html>

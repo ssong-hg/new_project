@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main/hotelinfo.css">
+    <link rel="stylesheet" href="main/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{main}"><h1>THE HOTEL</h1></a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+        				<li><a th:href="@{/login}">로그인</a></li>
+    				</th:block>
+    				<th:block th:if="${session.member != null}">
+        				<li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님 환영합니다</span></li>
+				            <li><a th:href="@{/logout}">로그아웃</a></li>
+    				</th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    </div>
+    </section>
+
+    <section class="body">
+        <div class="wrap">
+            <div class="slick-text">
+                <p>
+                    <h2>The Hotel</h2>
+                </p>
+                <h5>The Hotel에서는 다양한 메뉴의 한식 조식 뷔페를 비롯 다양한 목적의 비즈니스 업무 공간 활용 및 커피, 티, 생수 등을 무료로 즐길 수 있습니다.
+                    <br>13층에 위치하여 세련된 음악과 함께 부산 도심의 아름다운 야경을 감상하며, 여행의 여유와 편안한 휴식을 즐기실 수 있습니다.</h5>
+            </div>
+            <div class="slick">
+                <div class="slick-wrap">
+                    <img src="main/라운딩1.jpg" alt="배너1">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/라운딩3.jpg" alt="배너3">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/라운지1.jpg" alt="배너4">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/라운지2.jpg" alt="배너5">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/수영장1.jpg" alt="배너7">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/수영장2.jpg" alt="배너8">
+                </div>
+                <div class="slick-wrap">
+                    <img src="main/수영장3.jpg" alt="배너9">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <section>
+            <div class="footer_text">
+                <tr>
+                    <td>
+                        <h3>위치</h3>
+                    </td>
+                    <td>
+                        <h4>지상 13층</h4>
+                    </td>
+                </tr>
+            </div>
+            <hr>
+            <div class="footer_text2">
+                <tr>
+                    <h2>운영시간</h2>
+                    <td>
+                        <h3>조식</h3>
+                        <span>07:00 ~ 10:00 (마지막 입장시간 9:30)</span>
+                    </td>
+                </tr>
+                <br>
+                <tr>
+                    <td><span>
+                            <h3>휴게공간</h3>
+                        </span>
+                        <span>오전 10시이후 ~ 오전 2시 까지</span>
+                    </td>
+                </tr>
+            </div>
+            <hr>
+            <div class="footer_text3">
+                <tr>
+                    <td>
+                        <h3>시설</h3>
+                    </td>
+                    <td>
+                        <h4>야외정원, 벤치, 커피머신, 정수기, 테이블 등 </h4>
+                    </td>
+                </tr>
+            </div>
+            <hr>
+            <div class="footer_text4">
+                <tr>
+                    <td>
+                        <h3>문의</h3>
+                    </td>
+                    <td>
+                        <H4><span>TEL　</span>051-000-0000<span>EMAIL　</span>test@naver.com</H4>
+                    </td>
+                </tr>
+            </div>
+        </section>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.slick').slick({
+            autoplay: true, // 자동 스크롤 사용 여부
+            autoplaySpeed: 2500, // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+            pauseOnHover: true,
+
+        });
+    });
+</script>
+
+</html>

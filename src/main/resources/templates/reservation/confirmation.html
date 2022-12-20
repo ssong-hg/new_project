@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/reservation/base.css">
+    <link rel="stylesheet" href="/reservation/confirmation.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="main.html" th:href="@{/main}">
+                <h1>THE HOTEL</h1>
+            </a>
+        </div>
+        <section class="head">
+            <ul>
+                <li><a href="hotelinfo.html" th:href="@{/hotelinfo}">호텔 정보</a></li>
+            </ul>
+            <ul>
+                <li><a href="roominfo.html" th:href="@{/roominfo}">객실 정보</a></li>
+            </ul>
+            <ul>
+                <th:block th:if="${session.member == null}">
+                    <li><a th:href="@{/login}">로그인</a></li>
+                </th:block>
+                <th:block th:if="${session.member != null}">
+                    <li><a class="login_id" th:href="@{/memberdetail}">[[${session.member.name}]] </a><span>님
+                            환영합니다</span></li>
+                    <li><a th:href="@{/logout}">로그아웃</a></li>
+                </th:block>
+            </ul>
+            <ul>
+                <li><a href="" th:href="@{/reservation/reservationList}">예약 확인</a></li>
+            </ul>
+            <ul>
+                <li><a href="map.html" th:href="@{/map}">오시는 길</a></li>
+            </ul>
+            <ul>
+                <li><a href="qna.html" th:href="@{/question/list}">Q & A</a></li>
+            </ul>
+        </section>
+    </header>
+    <hr>
+    <div th:if="${session.member == null}">
+        <!-- 비로그인 -->
+        <th:block>
+            <section class="body">
+                <div class="login_img"> </div>
+                <h3>해당 기능은 로그인이 필요합니다</h3>
+                <div class="sub">
+                    <div class="login_box" }>
+                        <a class="login_a" href="main.html" th:href="@{/main}">로그인 화면으로 돌아가기</a>
+                    </div>
+                    <div class="qna_box">
+                        <a class="qanda_a" href="roominfo.html" th:href="@{/roominfo}">객실 정보 화면으로 돌아가기</a>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+    <div th:if="${session.member != null}">
+        <!-- 로그인 -->
+        <th:block th:if="${reservation.memId == session.member.id }" class="body1">
+            <h2 class="cf_title">예약확인</h2>
+            <div class="cf_table">
+                <!-- 작성자 -->
+                <div class="choice_day">
+                <div class="type_class">
+                    <div class="type_title">객실타입</div>
+                    <div class="room_text" th:text="${reservation.roomType}"></div>
+                </div>
+                <div class="type_class">
+                    <div class="type_title">예약한 방 번호</div>
+                    <div class="room_text" th:text="${reservation.roomNo}"></div>
+                </div>
+                </div>
+                <div class="choice_day">
+                <div class="type_class">
+                    <div class="type_title">Check In 날짜</div>
+                    <div class="room_text" th:text="${#dates.format(reservation.checkInDate, 'yyyy-MM-dd')}"></div>
+                    <div class="room_text"> 15:00 </div>
+                </div>
+                <div class="type_class">
+                    <div class="type_title">Check Out 날짜 </div>
+                    <div class="room_text" th:text="${#dates.format(reservation.checkOutDate, 'yyyy-MM-dd')}"></div>
+                    <div class="room_text">11:00</div>
+                </div>
+                </div>
+            <div class="type_class">
+                <div class="type_title">예약자 이름</div> 
+                <div class="room_text" th:text="${reservation.memId}"></div>
+            </div>
+            <div class="type_class">
+                <div class="type_title">인원</div>
+                <div class="room_text" th:text="${reservation.persons}"></div>
+            </div>
+            <div class="type_class">
+            <div class="type_title">가격</div>
+            <div class="room_text" th:text="${reservation.price}"></div>
+            </div>
+        </div>
+	    </th:block>
+	</div>
+   </body>
+</html>

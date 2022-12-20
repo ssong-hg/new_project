@@ -1,0 +1,18 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+table{
+	margin:0 auto;
+	text-align: center;
+	margin-top: 100px;
+}
+
+tr{
+	color:white;
+	background-color: #162447;
+}
+
+td{
+	color: black;
+	background-color: white;
+}
